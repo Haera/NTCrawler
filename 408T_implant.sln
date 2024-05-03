@@ -15,6 +15,8 @@ Global
 		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		Rls DLL|x64 = Rls DLL|x64
+		Rls DLL|x86 = Rls DLL|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Debug|x64.ActiveCfg = Debug|x64
@@ -25,6 +27,10 @@ Global
 		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Release|x64.Build.0 = Release|x64
 		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Release|x86.ActiveCfg = Release|Win32
 		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Release|x86.Build.0 = Release|Win32
+		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Rls DLL|x64.ActiveCfg = Release|x64
+		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Rls DLL|x64.Build.0 = Release|x64
+		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Rls DLL|x86.ActiveCfg = Release DLL|Win32
+		{7FEDBEE0-60B9-455A-A350-04A5AADC9B16}.Rls DLL|x86.Build.0 = Release DLL|Win32
 		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Debug|x64.ActiveCfg = Debug|x64
 		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Debug|x64.Build.0 = Debug|x64
 		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Debug|x86.ActiveCfg = Debug|Win32
@@ -33,6 +39,10 @@ Global
 		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Release|x64.Build.0 = Release|x64
 		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Release|x86.ActiveCfg = Release|Win32
 		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Release|x86.Build.0 = Release|Win32
+		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Rls DLL|x64.ActiveCfg = Release|x64
+		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Rls DLL|x64.Build.0 = Release|x64
+		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Rls DLL|x86.ActiveCfg = Release DLL|Win32
+		{39089B04-087F-4CE3-B9CD-2474D40001C1}.Rls DLL|x86.Build.0 = Release DLL|Win32
 		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Debug|x64.ActiveCfg = Debug|x64
 		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Debug|x64.Build.0 = Debug|x64
 		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Debug|x86.ActiveCfg = Debug|Win32
@@ -41,6 +51,10 @@ Global
 		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Release|x64.Build.0 = Release|x64
 		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Release|x86.ActiveCfg = Release|Win32
 		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Release|x86.Build.0 = Release|Win32
+		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Rls DLL|x64.ActiveCfg = Rls Dllz|x64
+		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Rls DLL|x64.Build.0 = Rls Dllz|x64
+		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Rls DLL|x86.ActiveCfg = Rls Dllz|Win32
+		{FF08C5AD-DD4E-4FC9-8763-71AA23A3FAD6}.Rls DLL|x86.Build.0 = Rls Dllz|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

