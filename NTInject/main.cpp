@@ -4,8 +4,6 @@
 #include "util.hpp"
 #include "injector.hpp"
 
-//PCWSTR dllPath = L"C:\\Users\\speep\\Source\\repos\\408T_implant\\x64\\Release\\implant.dll";
-//PCWSTR dllPath = L"C:\\Users\\speep\\source\\repos\\Haera\\NTCrawler\\x64\\Release\\implant.dll";
 PCWSTR dllPath = L"C:\\MinGW\\bin\\libnt.dll";
 
 int main(int argc, char *argv[])
